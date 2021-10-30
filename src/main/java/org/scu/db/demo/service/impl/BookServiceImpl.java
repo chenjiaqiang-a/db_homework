@@ -23,4 +23,18 @@ public class BookServiceImpl implements BookService {
         return bookMapper.query_call_and_count();
     }
 
+    @Override
+    public List<Integer> findAllBorrowedBooksId() {
+        return bookMapper.query_all_borrowed_booksid();
+    }
+
+    @Override
+    public Integer countCall123Book() {
+        return bookMapper.query_count_Call123_book();
+    }
+
+    @Override
+    public List<String> findCountNotExceed2Callnumber() {
+        return bookMapper.query_count_not_exceed_2_callnumber();
+    }
 }

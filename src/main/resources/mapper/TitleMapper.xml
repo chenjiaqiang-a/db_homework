@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scu.db.demo.mapper.TitleMapper">
+    <resultMap id="title_result_map" type="org.scu.db.demo.model.Title">
+        <id property="callnumber" column="callnumber" />
+        <result property="name" column="name" />
+        <result property="isbn" column="isbn" />
+        <result property="year" column="year" />
+        <result property="publisher" column="publisher" />
+    </resultMap>
+
+
+    <!--  查询书名为”Iliad”或”Odyssey”的书目信息。(对应第4题)  -->
+    <select id="query_Iliad_or_Odyssey_title" resultMap="title_result_map">
+        select * FROM title
+        where name in ('Iliad', 'Odyssey');
+    </select>
+</mapper>

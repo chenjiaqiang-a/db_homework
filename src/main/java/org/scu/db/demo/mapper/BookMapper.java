@@ -10,4 +10,10 @@ import java.util.Map;
 public interface BookMapper {
     List<Book> queryBook();
     List<Map> query_call_and_count();
+
+    List<Integer> query_all_borrowed_booksid();
+
+    Integer query_count_Call123_book();
+
+    List<String> query_count_not_exceed_2_callnumber();
 }

@@ -3,7 +3,7 @@
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.scu.db.demo.mapper.BookMapper">
-    <resultMap id="book_resultmap" type="org.scu.db.demo.model.Book">
+    <resultMap id="book_result_map" type="org.scu.db.demo.model.Book">
         <id property="bookId" column="book_id"/>
         <result property="edition" column="edition"/>
         <result property="borrowduedate" column="borrowduedate"/>
@@ -12,15 +12,30 @@
     </resultMap>
 
 
-    <select id="queryBook" resultMap="book_resultmap">
+    <select id="queryBook" resultMap="book_result_map">
         select * from book;
     </select>
-<!--    例子：查询每一图书的callnumber号和本数-->
+    <!--例子：查询每一图书的callnumber号和本数-->
     <select id="query_call_and_count" resultType="map">
         select callnumber, count(*) as call_num from book group by callnumber;
     </select>
 
+    <!--  查询所有被借走图书的Book_ID。(对应第2题)  -->
+    <select id="query_all_borrowed_booksid" resultType="java.lang.Integer">
+        select book_id from book
+        where borrowermemno is not null;
+    </select>
+
+    <!--  查询callnumber为”Call123”的图书有多少本。(对应第5题)  -->
+    <select id="query_count_Call123_book" resultType="java.lang.Integer">
+        select count(book_id) from book
+        where callnumber='Call123';
+    </select>
+
+    <!--  查询本数不超过2本的图书的callnumber号。(对应第7题)  -->
+    <select id="query_count_not_exceed_2_callnumber" resultType="java.lang.String">
+        select callnumber from Book
+        group by callnumber having count(*) &lt; 3;
+    </select>
+
 </mapper>
-
-
-

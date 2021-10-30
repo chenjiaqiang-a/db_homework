@@ -11,4 +11,10 @@ import java.util.Map;
 public interface BookService {
     List<Book> findAllBooks();
     List<Map> query_call_and_count();
+
+    List<Integer> findAllBorrowedBooksId();
+
+    Integer countCall123Book();
+
+    List<String> findCountNotExceed2Callnumber();
 }
